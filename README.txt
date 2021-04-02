@@ -5,3 +5,5 @@ Danh sách các yêu cầu của đề tài:
 Hướng dẫn sử dụng:
 1.
 2.
+
+Yêu cầu chức năng:
