@@ -7,20 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    Button btnQuayLai;
+    Button btnDangKy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        btnQuayLai = (Button) findViewById(R.id.btnQuayLai);
-        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_login);
+
+        btnDangKy = (Button) findViewById(R.id.btnDangKy);
+
+        btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
     }
 }
