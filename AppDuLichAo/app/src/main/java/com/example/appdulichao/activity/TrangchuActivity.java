@@ -10,13 +10,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ActionMenuView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appdulichao.R;
+import com.example.appdulichao.adapter.TypeaccessAdapter;
+import com.example.appdulichao.model.Typeaccess;
+import com.example.appdulichao.ultil.CheckConnection;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -28,6 +35,10 @@ public class TrangchuActivity extends AppCompatActivity {
     NavigationView navigationView;
     ListView listViewTrangChu;
     DrawerLayout drawerLayout;
+    ArrayList<Typeaccess> mangtypeaccess;
+    TypeaccessAdapter typeaccessAdapter;
+    DatabaseReference mDatabase;
+
     int gallery_grid_images[]={R.drawable.viewflipper1, R.drawable.viewflipper2, R.drawable.viewflipper3, R.drawable.viewflipper4,
             R.drawable.viewflipper5, R.drawable.viewflipper6, R.drawable.viewflipper7, R.drawable.viewflipper8};
 
@@ -36,8 +47,23 @@ public class TrangchuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangchu);
         Anhxa();
-        ActionBar();
-        ActionMenuViewFlipper();
+        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            ActionBar();
+            ActionMenuViewFlipper();
+            GetDuLieuTypeaccess();
+        }else {
+            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+            finish();
+        }
+
+    }
+
+
+
+    private void GetDuLieuTypeaccess() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        // mDatabase.child("TypeAccess")
     }
 
     private void setFlipperImage(int res) {
@@ -79,6 +105,10 @@ public class TrangchuActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.navigationview);
         listViewTrangChu = (ListView) findViewById(R.id.listviewTrangChu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        mangtypeaccess = new ArrayList<>();
+        typeaccessAdapter = new TypeaccessAdapter(mangtypeaccess, getApplicationContext());
+        listViewTrangChu.setAdapter(typeaccessAdapter);
     }
+
 
 }

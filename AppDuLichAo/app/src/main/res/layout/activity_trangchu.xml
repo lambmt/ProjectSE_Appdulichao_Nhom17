@@ -18,14 +18,18 @@
                 android:id="@+id/toolbarTrangChu"
                 app:title="Trang chủ"
                 app:titleTextColor="#FFFFFF"
-                android:background="#0FC5E4"
+                android:background="?attr/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/toolbarImage"
-                    android:src="@drawable/logoapp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logoapp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FF000000"/>
+
             </androidx.appcompat.widget.Toolbar>
             <ViewFlipper
                 android:id="@+id/viewflipper"
