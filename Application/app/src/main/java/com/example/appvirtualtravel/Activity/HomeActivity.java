@@ -2,12 +2,15 @@ package com.example.appvirtualtravel.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
 
 import com.example.appvirtualtravel.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -27,5 +30,11 @@ public class HomeActivity extends AppCompatActivity {
         viewFlipper.setFlipInterval(2500);
         viewFlipper.setAutoStart(true);
 
+    }
+
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 }

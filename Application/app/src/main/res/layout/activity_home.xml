@@ -71,6 +71,12 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btnlogout"
+                    android:text="Đăng xuất"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="logout"/>
                 <TextView
                     android:text="Địa điểm HOT"
                     android:layout_margin="5dp"
@@ -79,6 +85,7 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewTrangChu"
                     android:layout_width="match_parent"

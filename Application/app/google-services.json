@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "757139089038",
+    "project_id": "vrtravelapp-nhom17",
+    "storage_bucket": "vrtravelapp-nhom17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757139089038:android:6c2d5e2497f0565a7e8bdf",
+        "android_client_info": {
+          "package_name": "com.example.appvirtualtravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757139089038-nrrjiurq4v3ubga4ed131tvki24ovols.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appvirtualtravel",
+            "certificate_hash": "4291e8a9982103784570b5783bc7b898a307ebeb"
+          }
+        },
+        {
+          "client_id": "757139089038-v8os9aijfe1fvih1trso8j8ae0l8pu1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBuZA-YUKtiD9H4qe8N3Bhqj8_WYTYtXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757139089038-v8os9aijfe1fvih1trso8j8ae0l8pu1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
