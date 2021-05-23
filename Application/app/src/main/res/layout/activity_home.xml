@@ -14,14 +14,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarTrangChu"
-                app:title="Trang chủ"
-                app:titleTextColor="#FFFFFF"
-                android:background="?attr/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
-            </androidx.appcompat.widget.Toolbar>
             <ViewFlipper
                 android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
@@ -94,17 +86,21 @@
                 </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
         </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationview"
-            android:layout_gravity="start"
+        <include
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/listviewTrangChu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            layout="@layout/drawer_toolbar"/>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/content_main"/>
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/navigationView"
+            app:menu="@menu/drawer_menu"
+            app:headerLayout="@layout/drawer_header"
+            android:layout_gravity="start" />
 
-            </ListView>
-        </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 </RelativeLayout>
