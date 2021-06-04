@@ -1,60 +1,89 @@
 package com.example.appvirtualtravel.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;
+import android.view.MenuItem;
 
+import com.example.appvirtualtravel.HomeFragment;
 import com.example.appvirtualtravel.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    ViewFlipper viewFlipper;
-    Animation in, out;
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     NavigationView navigationView;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
-        in = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        out = AnimationUtils.loadAnimation(this, R.anim.fade_out);
-        viewFlipper.setInAnimation(in);
-        viewFlipper.setOutAnimation(out);
-        viewFlipper.setFlipInterval(2500);
-        viewFlipper.setAutoStart(true);
+
 
         toolbar = findViewById(R.id.toolbarMenu);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
+        //load default fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container_fragment, new HomeFragment());
+        fragmentTransaction.commit();
     }
 
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        if(item.getItemId() == R.id.home){
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new HomeFragment());
+            fragmentTransaction.commit();
+        }
+        if(item.getItemId() == R.id.profile){
+
+        }
+        if(item.getItemId() == R.id.location){
+
+        }
+        if(item.getItemId() == R.id.search){
+
+        }
+        if(item.getItemId() == R.id.emailcontact){
+
+        }
+        if(item.getItemId() == R.id.phonecontact){
+
+        }
+        if(item.getItemId() == R.id.logout){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
+        return true;
     }
 }
