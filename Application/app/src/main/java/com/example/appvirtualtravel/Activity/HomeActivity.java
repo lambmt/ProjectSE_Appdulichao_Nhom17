@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.appvirtualtravel.HomeFragment;
+import com.example.appvirtualtravel.ProfileFragment;
 import com.example.appvirtualtravel.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container_fragment, new HomeFragment());
         fragmentTransaction.commit();
+
+
     }
 
 
@@ -65,7 +68,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
         }
         if(item.getItemId() == R.id.profile){
-
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new ProfileFragment());
+            fragmentTransaction.commit();
         }
         if(item.getItemId() == R.id.location){
 

@@ -38,6 +38,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-firestore:21.4.0'
+    implementation 'org.jetbrains:annotations:15.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -45,4 +46,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //Picasso - for image loading
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Ken Burns View - for ken burns effect
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
+    //Smooth Bottom Bar - for animated bottom navigation
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.3'
 }
