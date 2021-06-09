@@ -41,23 +41,19 @@ public class ProfileFragment extends Fragment {
         mPhone = view.findViewById(R.id.phonefromDB);
         mGender = view.findViewById(R.id.gemderfromDB);
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+        Bundle profileFrag2 = getArguments();
+        String fullname = profileFrag2.getString("fullname");
+        String email = profileFrag2.getString("email");
+        String password = profileFrag2.getString("password");
+        String phone = profileFrag2.getString("phone");
+        String gender = profileFrag2.getString("gender");
 
-        userID = fAuth.getCurrentUser().getUid();
-
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        EventListener<DocumentSnapshot> eventListener = new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                profileFullname.setText(value.getString("fullname"));
-                mFullName.setText(value.getString("fullname"));
-                mEmail.setText(value.getString("email"));
-                mPassword.setText(value.getString("password"));
-                mPhone.setText(value.getString("phone"));
-                mGender.setText(value.getString("gender"));
-            }
-        };
+        profileFullname.setText(fullname);
+        mFullName.setText(fullname);
+        mEmail.setText(email);
+        mPassword.setText(password);
+        mPhone.setText(phone);
+        mGender.setText(gender);
 
         return view;
     }

@@ -50,6 +50,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="#fece2f"
+                android:theme="@style/Theme.MaterialComponents.Light"
                 app:cardElevation="10dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -90,6 +91,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="#fece2f"
+                android:theme="@style/Theme.MaterialComponents.Light"
                 app:cardElevation="10dp">
 
                 <RelativeLayout
