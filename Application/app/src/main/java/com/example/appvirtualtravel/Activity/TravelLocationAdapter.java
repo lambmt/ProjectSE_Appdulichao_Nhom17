@@ -26,9 +26,8 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
     }
 
     @NonNull
-    @NotNull
     @Override
-    public TravelLocationViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public TravelLocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new TravelLocationViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.item_container_location,
@@ -39,7 +38,7 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull TravelLocationAdapter.TravelLocationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TravelLocationAdapter.TravelLocationViewHolder holder, int position) {
         holder.setLocationData(travelLocations.get(position));
     }
 
