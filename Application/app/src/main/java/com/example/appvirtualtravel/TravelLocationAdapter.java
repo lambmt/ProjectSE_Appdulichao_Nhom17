@@ -1,4 +1,4 @@
-package com.example.appvirtualtravel.Activity;
+package com.example.appvirtualtravel;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appvirtualtravel.R;
-import com.example.appvirtualtravel.TravelLocation;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -51,6 +47,7 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
 
         KenBurnsView kbvLocation;
         TextView textTitle, textLocation, textStarRating;
+        String textLocationID;
 
         public TravelLocationViewHolder(View itemView) {
             super(itemView);
@@ -61,10 +58,11 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
 
         }
         void setLocationData(TravelLocation travelLocation){
-            Picasso.get().load(travelLocation.imageUrl).into(kbvLocation);
-            textTitle.setText(travelLocation.title);
-            textLocation.setText(travelLocation.location);
+            Picasso.get().load(travelLocation.image_link).into(kbvLocation);
+            textTitle.setText(travelLocation.location_name);
+            textLocation.setText(travelLocation.province);
             textStarRating.setText(String.valueOf(travelLocation.starRating));
+            textLocationID = travelLocation.location_id;
         }
     }
 }

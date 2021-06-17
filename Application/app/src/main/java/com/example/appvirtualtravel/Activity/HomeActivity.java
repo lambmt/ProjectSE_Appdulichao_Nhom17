@@ -121,10 +121,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction = fragmentManager.beginTransaction();
             final LocationFragment locationFragment = new LocationFragment();
 
-
-
-            Bundle locationFrag = new Bundle();
-
+            Bundle locationFrag1 = new Bundle();
+            locationFrag1.putString("fullname",mFullName);
+            locationFragment.setArguments(locationFrag1);
 
             fragmentTransaction.replace(R.id.container_fragment, locationFragment);
             fragmentTransaction.commit();
