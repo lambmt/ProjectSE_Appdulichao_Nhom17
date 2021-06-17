@@ -121,35 +121,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction = fragmentManager.beginTransaction();
             final LocationFragment locationFragment = new LocationFragment();
 
-            List<TravelLocation> travelLocations = new ArrayList<>();
 
-            TravelLocation travelLocation1 = new TravelLocation();
-            travelLocation1.imageUrl = "https://i.ibb.co/FqyCvY5/eiffeltower.jpg";
-            travelLocation1.title = "France";
-            travelLocation1.location = "Eiffel Tower";
-            travelLocation1.starRating = 4.8f;
-            travelLocations.add(travelLocation1);
-
-            TravelLocation travelLocation2 = new TravelLocation();
-            travelLocation2.imageUrl = "https://i.ibb.co/Gngdtw2/indonesia-mountain.jpg";
-            travelLocation2.title = "Indonesia";
-            travelLocation2.location = "Mountain View";
-            travelLocation2.starRating = 4.5f;
-            travelLocations.add(travelLocation2);
-
-            TravelLocation travelLocation3 = new TravelLocation();
-            travelLocation3.imageUrl = "https://i.ibb.co/4pBKBGw/cotco-hanoi.jpg";
-            travelLocation3.title = "Hà Nội";
-            travelLocation3.location = "Cột Cờ Hà Nội";
-            travelLocation3.starRating = 5.0f;
-            travelLocations.add(travelLocation3);
-
-            TravelLocation travelLocation4 = new TravelLocation();
-            travelLocation4.imageUrl = "https://i.ibb.co/TYQkxsj/taj-mahal.jpg";
-            travelLocation4.title = "Ấn Độ";
-            travelLocation4.location = "Taj Mahal";
-            travelLocation4.starRating = 3.6f;
-            travelLocations.add(travelLocation4);
 
             Bundle locationFrag = new Bundle();
 
