@@ -47,12 +47,12 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
         return travelLocations.size();
     }
 
-    static class TravelLocationViewHolder extends RecyclerView.ViewHolder{
+    public class TravelLocationViewHolder extends RecyclerView.ViewHolder{
 
-        private KenBurnsView kbvLocation;
-        private TextView textTitle, textLocation, textStarRating;
+        KenBurnsView kbvLocation;
+        TextView textTitle, textLocation, textStarRating;
 
-        TravelLocationViewHolder(@NonNull @NotNull View itemView) {
+        public TravelLocationViewHolder(View itemView) {
             super(itemView);
             kbvLocation = itemView.findViewById(R.id.kbvLocation);
             textTitle = itemView.findViewById(R.id.textTitle);
