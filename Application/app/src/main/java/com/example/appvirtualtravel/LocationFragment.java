@@ -16,7 +16,9 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.appvirtualtravel.Activity.HomeActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
@@ -28,6 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,25 +63,34 @@ public class LocationFragment extends Fragment {
         locationViewPager.setAdapter(travelLocationAdapter);
 
         fStore = FirebaseFirestore.getInstance();
-        fStore.collection("location_list").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot d:list){
-                            TravelLocation obj = d.toObject(TravelLocation.class);
-                            travelLocations.add(obj);
 
-                        }
-                        //update adapter
-                        travelLocationAdapter.notifyDataSetChanged();
-                    }
-                });
+        DocumentReference documentReference = fStore.collection("location_list").document("06XtUlL4Zf5RxWsjaxJ0");
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                TravelLocation obj = documentSnapshot.toObject(TravelLocation.class);
+                travelLocations.add(obj);
+                travelLocationAdapter.notifyDataSetChanged();
+            }
+        });
 
 
+//        fStore.collection("location_list").get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+//                        for (DocumentSnapshot d:list){
+//                            TravelLocation obj = d.toObject(TravelLocation.class);
+//                            travelLocations.add(obj);
+//
+//                        }
+//                        //update adapter
+//                        travelLocationAdapter.notifyDataSetChanged();
+//                    }
+//                });
 
-
-
+        
         locationViewPager.setClipToPadding(false);
         locationViewPager.setClipChildren(false);
         locationViewPager.setOffscreenPageLimit(3);

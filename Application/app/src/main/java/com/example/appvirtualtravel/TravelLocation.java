@@ -5,11 +5,11 @@ public class TravelLocation {
     public String location_id;
     public String location_name;
     public String province;
-    public long starrating;
+    public Float starrating;
 
     public TravelLocation(){}
 
-    public TravelLocation(String image_link, String location_id, String location_name, String province, long starrating) {
+    public TravelLocation(String image_link, String location_id, String location_name, String province, Float starrating) {
         this.image_link = image_link;
         this.location_id = location_id;
         this.location_name = location_name;
@@ -49,11 +49,11 @@ public class TravelLocation {
         this.province = province;
     }
 
-    public long getStarrating() {
+    public Float getStarrating() {
         return starrating;
     }
 
-    public void setStarrating(long starrating) {
+    public void setStarrating(Float starrating) {
         this.starrating = starrating;
     }
 }

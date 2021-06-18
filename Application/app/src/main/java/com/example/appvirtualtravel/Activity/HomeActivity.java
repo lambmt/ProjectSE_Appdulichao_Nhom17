@@ -128,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, locationFragment);
             fragmentTransaction.commit();
         }
-        if(item.getItemId() == R.id.search){
+        if(item.getItemId() == R.id.admin){
 
         }
         if(item.getItemId() == R.id.emailcontact){

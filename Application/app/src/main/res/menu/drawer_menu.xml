@@ -14,9 +14,9 @@
         android:icon="@drawable/ic_baseline_location_on_24"
         android:title="Location" />
     <item
-        android:id="@+id/search"
+        android:id="@+id/admin"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search" />
+        android:title="Admin" />
     <item android:title="Contact Us">
         <menu>
             <item
