@@ -64,33 +64,8 @@ public class LocationFragment extends Fragment {
 
         fStore = FirebaseFirestore.getInstance();
 
-        DocumentReference documentReference = fStore.collection("location_list").document("06XtUlL4Zf5RxWsjaxJ0");
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                TravelLocation obj = documentSnapshot.toObject(TravelLocation.class);
-                travelLocations.add(obj);
-                travelLocationAdapter.notifyDataSetChanged();
-            }
-        });
+        GetDataLoation();
 
-
-//        fStore.collection("location_list").get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-//                        for (DocumentSnapshot d:list){
-//                            TravelLocation obj = d.toObject(TravelLocation.class);
-//                            travelLocations.add(obj);
-//
-//                        }
-//                        //update adapter
-//                        travelLocationAdapter.notifyDataSetChanged();
-//                    }
-//                });
-
-        
         locationViewPager.setClipToPadding(false);
         locationViewPager.setClipChildren(false);
         locationViewPager.setOffscreenPageLimit(3);
@@ -111,5 +86,22 @@ public class LocationFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void GetDataLoation() {
+        fStore.collection("location_list").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                        for (DocumentSnapshot d:list){
+                            TravelLocation obj = d.toObject(TravelLocation.class);
+                            travelLocations.add(obj);
+
+                        }
+                        //update adapter
+                        travelLocationAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 }
