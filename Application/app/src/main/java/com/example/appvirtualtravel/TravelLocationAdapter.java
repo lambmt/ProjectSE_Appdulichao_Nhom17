@@ -1,5 +1,6 @@
 package com.example.appvirtualtravel;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAdapter.TravelLocationViewHolder>{
 
-    private List<TravelLocation> travelLocations;
+    List<TravelLocation> travelLocations;
 
     public TravelLocationAdapter(List<TravelLocation> travelLocations) {
         this.travelLocations = travelLocations;
@@ -24,18 +25,20 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
     @NonNull
     @Override
     public TravelLocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TravelLocationViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(
-                        R.layout.item_container_location,
-                        parent,
-                        false
-                )
-        );
+        View view = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.item_container_location, parent, false);
+        return new TravelLocationViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TravelLocationAdapter.TravelLocationViewHolder holder, int position) {
-        holder.setLocationData(travelLocations.get(position));
+        holder.locationID = travelLocations.get(position).getLocation_id();
+        holder.textLocationName.setText(travelLocations.get(position).getLocation_name());
+        holder.textProvince.setText(travelLocations.get(position).getProvince());
+        holder.imageLink = travelLocations.get(position).getImage_link();
+        holder.textStarRating.setText(String.valueOf(travelLocations.get(position).getStarrating()));
+
     }
 
     @Override
@@ -46,23 +49,23 @@ public class TravelLocationAdapter extends RecyclerView.Adapter<TravelLocationAd
     public class TravelLocationViewHolder extends RecyclerView.ViewHolder{
 
         KenBurnsView kbvLocation;
-        TextView textTitle, textLocation, textStarRating;
-        String textLocationID;
+        TextView textProvince, textLocationName, textStarRating;
+        String locationID, imageLink;
 
         public TravelLocationViewHolder(View itemView) {
             super(itemView);
             kbvLocation = itemView.findViewById(R.id.kbvLocation);
-            textTitle = itemView.findViewById(R.id.textTitle);
-            textLocation = itemView.findViewById(R.id.textLocation);
+            textLocationName = itemView.findViewById(R.id.textLocationName);
+            textProvince = itemView.findViewById(R.id.textProvince);
             textStarRating = itemView.findViewById(R.id.textStarRating);
 
         }
         void setLocationData(TravelLocation travelLocation){
-            Picasso.get().load(travelLocation.image_link).into(kbvLocation);
-            textTitle.setText(travelLocation.location_name);
-            textLocation.setText(travelLocation.province);
-            textStarRating.setText(String.valueOf(travelLocation.starRating));
-            textLocationID = travelLocation.location_id;
+            Picasso.get().load(imageLink).into(kbvLocation);
+            textLocationName.setText(travelLocation.location_name);
+            textProvince.setText(travelLocation.province);
+            textStarRating.setText(String.valueOf(travelLocation.starrating));
+            locationID = travelLocation.location_id;
         }
     }
 }

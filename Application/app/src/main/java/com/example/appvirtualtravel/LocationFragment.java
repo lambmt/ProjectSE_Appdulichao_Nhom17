@@ -1,6 +1,7 @@
 package com.example.appvirtualtravel;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.appvirtualtravel.Activity.HomeActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -35,36 +38,46 @@ import javax.annotation.Nullable;
 public class LocationFragment extends Fragment {
 
     TextView mFullName;
-    List<TravelLocation> travelLocations = new ArrayList<>();
+    List<TravelLocation> travelLocations;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    TravelLocationAdapter travelLocationAdapter;
     @Nullable
     @Override
     public View onCreateView(@Nonnull LayoutInflater inflater, @Nonnull ViewGroup container, @Nullable Bundle saveInstanceState) {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
+
         mFullName = view.findViewById(R.id.textHello);
+        ViewPager2 locationViewPager = view.findViewById(R.id.locationViewPager);
 
         Bundle locationFrag2 = getArguments();
         String fullname = locationFrag2.getString("fullname");
         mFullName.setText("Hello, "+fullname);
 
-        ViewPager2 locationViewPager = view.findViewById(R.id.locationViewPager);
+        travelLocations= new ArrayList<>();
+        travelLocationAdapter = new TravelLocationAdapter(travelLocations);
+        locationViewPager.setAdapter(travelLocationAdapter);
 
         fStore = FirebaseFirestore.getInstance();
         fStore.collection("location_list").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> listLocation = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot documentSnapshot:listLocation){
-                            TravelLocation obj = documentSnapshot.toObject(TravelLocation.class);
+                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                        for (DocumentSnapshot d:list){
+                            TravelLocation obj = d.toObject(TravelLocation.class);
                             travelLocations.add(obj);
+
                         }
+                        //update adapter
+                        travelLocationAdapter.notifyDataSetChanged();
                     }
                 });
 
 
-        locationViewPager.setAdapter(new TravelLocationAdapter(travelLocations));
+
+
+
         locationViewPager.setClipToPadding(false);
         locationViewPager.setClipChildren(false);
         locationViewPager.setOffscreenPageLimit(3);
