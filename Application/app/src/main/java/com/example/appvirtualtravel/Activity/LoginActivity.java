@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         inflater = this.getLayoutInflater();
 
         FirebaseAuth.getInstance().signOut();
-
+        mEmail.setText("");
+        mPassword.setText("");
 
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
