@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordResetDialog = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
 
+        FirebaseAuth.getInstance().signOut();
+
 
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
